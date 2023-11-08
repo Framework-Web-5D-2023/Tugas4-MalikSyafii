@@ -29,7 +29,7 @@ class Database extends Config
     'hostname'     => 'localhost',
     'username'     => 'root',
     'password'     => '',
-    'database'     => 'fw_5d',
+    'database'     => 'kuliaah',
     'DBDriver'     => 'MySQLi',
     'DBPrefix'     => '',
     'pConnect'     => false,

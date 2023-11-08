@@ -6,59 +6,33 @@ class Home extends BaseController
 {
   public function index(): string
   {
-    // dd($this->mahasiswaModel->getAllMahasiswa());
     $mahasiswa = $this->mahasiswaModel->getAllMahasiswa();
     $data = [
-      "title" => "Home",
-      "nama" => "Alfian Vito",
-      "biodata" => [
-        [
-          "name" => "Irfan",
-          "npm" => "20202222"
-        ],
-        [
-          "name" => "Toni",
-          "npm" => "20213102222"
-        ],
-      ],
-      "mahasiswa" => $mahasiswa,
-    ];
-    return view('home/index', $data);
-  }
-
-  public function detailMahasiswa($id)
-  {
-    $mahasiswa = $this->mahasiswaModel->getDetailMahasiswa($id);
-    $data = [
-      "title" => "Detail Mahasiswa",
+      "title" => "Display",
       "mahasiswa" => $mahasiswa
     ];
-
-    return view('home/detail', $data);
+    //dd($data);
+    return view('display', $data);
   }
-
-  public function createMahasiswa()
+  public function input(): string
+  {
+    $data = [
+      "title" => "input",
+    ];
+    return view('input', $data);
+  }
+  public function create()
   {
     $nama = $this->request->getVar("nama");
     $npm = $this->request->getVar("npm");
     $prodi = $this->request->getVar("prodi");
-    $minat = $this->request->getVar("minat");
-    $domisili = $this->request->getVar("domisili");
-    $jenis_kelamin = $this->request->getVar("jenis_kelamin");
-
-    // dd($nama, $npm, $prodi, $minat, $domisili, $jenis_kelamin);
 
     $data = [
       "nama" => $nama,
       "npm" => $npm,
       "prodi" => $prodi,
-      "minat" => $minat,
-      "domisili" => $domisili,
-      "jenis_kelamin" => $jenis_kelamin,
     ];
-
     $this->mahasiswaModel->create($data);
-    $this->session->setFlashData("success", "Mahasiswa has been added");
-    return redirect()->to(base_url("/"));
+    return redirect()->to(base_url());
   }
 }
